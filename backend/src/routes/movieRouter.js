@@ -19,4 +19,25 @@ movieRouter.get("/", async function getAllMoviesCtrl(_, res) {
   }
 });
 
+// GET-Route: show movie details for each movie (by ID)
+movieRouter.get(
+  "/:movieId",
+  async function getOneMovieWithDetailsCtrl(req, res) {
+    try {
+      const movieId = req.params.movieId;
+      const result = await MovieService.getMovieDetail(movieId);
+      console.log(result);
+      res.json({ success: true, result });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        success: false,
+        error,
+        message:
+          error.message || "Fehler Router-Movie-Details: Kein Film erhalten",
+      });
+    }
+  }
+);
+
 export default movieRouter;

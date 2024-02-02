@@ -9,6 +9,7 @@ export function makeMovie({
   genres,
   plot,
   actors,
+  imdb,
 }) {
   const movieData = {
     _id,
@@ -21,6 +22,7 @@ export function makeMovie({
     genres,
     plot,
     actors,
+    imdb: { rating: imdb?.rating },
   };
   return movieData;
 }
